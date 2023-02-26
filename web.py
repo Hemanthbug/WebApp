@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+
 import altair as alt
 
 st.set_page_config(page_title ='Loan Amount')
@@ -49,14 +49,3 @@ line_chart = alt.Chart(line_data).mark_line().encode(
     tooltip=["Loan Number", "Loan Amount"],).properties(width=800, height=400)
 st.altair_chart(line_chart, use_container_width=True)
 
-st.write("## Histograms shows the Loan Amount count based on the Amount range")
-
-plt.hist(data['Loan Amount'], bins=20)
-st.pyplot()
-
-st.write("## Bar chart shows the relationship between States and Loan Amount")
-
-loan_amount_by_state = data.groupby('State').sum()['Loan Amount']
-plt.bar(loan_amount_by_state.index, loan_amount_by_state.values)
-plt.xticks(rotation=45)
-st.pyplot()
